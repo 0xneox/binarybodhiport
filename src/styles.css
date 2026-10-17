@@ -1,3 +1,4 @@
+/* Tailwind CSS v4 syntax - linter warnings can be ignored */
 @import "tailwindcss" source(none);
 @source "../src";
 
@@ -7,6 +8,15 @@
   --dim: #7a7a7a;
   --line: #1f1f1f;
   --line-strong: #2e2e2e;
+}
+
+/* Light mode */
+[data-theme="light"] {
+  --bg: #fafafa;
+  --fg: #1a1a1a;
+  --dim: #6a6a6a;
+  --line: #e0e0e0;
+  --line-strong: #d0d0d0;
 }
 
 html {
@@ -22,6 +32,20 @@ html, body {
   font-feature-settings: "calt" 0, "liga" 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
+  min-height: 100vh;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  html, body {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 12px;
+  }
 }
 
 * {
@@ -62,6 +86,28 @@ a:focus-visible {
   a {
     padding: 4px 6px;
     margin: -4px -6px;
+  }
+}
+
+/* Responsive spacing */
+@media (max-width: 640px) {
+  .section-fade-in {
+    animation-duration: 1.5s;
+  }
+}
+
+/* Improved mobile layout */
+@media (max-width: 480px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  main {
+    max-width: 600px;
   }
 }
 
@@ -131,6 +177,10 @@ a:focus-visible {
   z-index: 0;
 }
 
+[data-theme="light"] .mandala-bg {
+  opacity: 0.08;
+}
+
 .mandala-bg::before {
   content: '';
   position: absolute;
@@ -175,11 +225,11 @@ a:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .mandala-bg {
     animation: none;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
@@ -208,3 +258,28 @@ h1 {
 }
 
 .uppercase-tight { letter-spacing: 0.14em; }
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+/* Logo image styling */
+img {
+  max-width: 100%;
+  height: auto;
+}
